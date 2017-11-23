@@ -16,7 +16,8 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('handle report')->nullable();
+            $table->integer('id_reporter');
+            $table->boolean('handle report')->default(false);
             $table->integer('category');
             $table->text('detail');
             $table->string('link_photo');

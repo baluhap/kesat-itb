@@ -15,6 +15,8 @@ class CreateHandleReportsTable extends Migration
     {
         Schema::create('handle_reports', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_handler');
+            $table->integer('id_report');
             $table->timestamps();
             $table->integer("report_label");
             $table->text("detail");
