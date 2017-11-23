@@ -40,6 +40,7 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         Image::make(Input::file('picture'))->resize(300, 200)->save('foo.jpg');
+        
     }
 
     /**
