@@ -19,7 +19,7 @@ class ReportController extends Controller
     public function index()
     {
         //
-        return view("report");
+
     }
 
     /**
@@ -30,6 +30,7 @@ class ReportController extends Controller
     public function create()
     {
         //
+        return view("report.create");
     }
 
     /**
@@ -46,10 +47,11 @@ class ReportController extends Controller
         $report->detail = $request->detail;
         $report->save();
         $id= DB::getPdo()->lastInsertId();
-        $store_loc="report_".$id.".jpg";
+        $store_loc="image/report_".$id.".jpg";
         Image::make(Input::file('picture'))->save($store_loc, 70);;
         $report->link_photo = $store_loc;
         $report->save();
+        return redirect('report/show/'.$id);
     }
 
     /**
@@ -58,9 +60,10 @@ class ReportController extends Controller
      * @param  \App\report  $report
      * @return \Illuminate\Http\Response
      */
-    public function show(report $report)
+    public function show($id)
     {
         //
+        return view('report.show', ['report' => Report::findOrFail($id)]);
     }
 
     /**

@@ -15,7 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/report','ReportController@index');
+Route::get('/report','ReportController@create');
+
+Route::get('/report/show/{id}','ReportController@show');
 
 Route::post('/report','ReportController@store');
 

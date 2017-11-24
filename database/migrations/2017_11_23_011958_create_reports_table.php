@@ -17,7 +17,7 @@ class CreateReportsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('id_reporter');
-            $table->boolean('handle report')->default(false);
+            $table->boolean('handle_report')->default(false);
             $table->integer('category');
             $table->text('detail');
             $table->string('link_photo')->nullable();
