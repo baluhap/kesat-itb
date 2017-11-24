@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Storage;
 use Image;
+use DB;
 
 class ReportController extends Controller
 {
@@ -39,8 +40,16 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        Image::make(Input::file('picture'))->resize(300, 200)->save('foo.jpg');
-        
+        $report = new Report;
+        $report->id_reporter = $request->id_reporter;
+        $report->category = $request->category;
+        $report->detail = $request->detail;
+        $report->save();
+        $id= DB::getPdo()->lastInsertId();
+        $store_loc="report_".$id.".jpg";
+        Image::make(Input::file('picture'))->save($store_loc, 70);;
+        $report->link_photo = $store_loc;
+        $report->save();
     }
 
     /**

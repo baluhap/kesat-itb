@@ -20,7 +20,7 @@ class CreateReportsTable extends Migration
             $table->boolean('handle report')->default(false);
             $table->integer('category');
             $table->text('detail');
-            $table->string('link_photo');
+            $table->string('link_photo')->nullable();
         });
     }
 
